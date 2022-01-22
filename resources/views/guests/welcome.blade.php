@@ -62,9 +62,12 @@
                 margin-bottom: 30px;
             }
         </style>
+
+        <script src="{{asset('js/vue.js')}}" defer></script>
+        <script src="{{asset('js/app.js')}}" defer></script>
     </head>
     <body>
-        <div class="flex-center position-ref full-height">
+        <div id="vueApp" class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth
