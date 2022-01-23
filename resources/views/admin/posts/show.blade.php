@@ -19,7 +19,7 @@
               <h4>Contenuto</h4>
               <p>{{$post->body}}</p>
 
-              {{-- <a href="{{route('admin.posts.edit', $post->id)}}" class="btn btn-success">Modifica</a> --}}
+              <a href="{{route('admin.posts.edit', $post->id)}}" class="btn btn-success">Modifica</a>
               {{-- <a href="{{route('admin.posts.delete', $post->id)}}" class="btn btn-date">Elimina</a> --}}
 
             </div>
