@@ -5,12 +5,26 @@
     <header>
       <div class="container py-5 text-center">
         <h1>Laravel Boolpress</h1>
-        <h3>Benvenuti nel blog che non contiene ancora nulla!</h3>
+        <h3>Benvenuti in questo strabiliante blog!</h3>
       </div>
     </header>
 
     <main>
-      <h3 class="text-center fw-bold py-5">Ancora nessun dato disponibile...</h3>
+      <h3 v-if="postList.length === 0" class="text-center fw-bold py-5">Ancora nessun dato disponibile...</h3>
+
+      <div class="d-flex justify-content-center py-5">
+        <ul class="list-group">
+          <li v-for="post in postList" :key="post.id" class="list-group-item">
+            {{post.title}}
+            <ul>
+              <li>{{post.author}}</li>  
+              <li>{{post.description}}</li>  
+              <li>{{post.publish_date}}</li>  
+            </ul>
+          </li>
+        </ul>
+      </div>
+
     </main>
 
     <Footer></Footer>
@@ -27,6 +41,19 @@ export default {
     Footer
   },
   name: 'App',
+  data() {
+    return {
+      postList: [],
+
+    };
+  },
+
+  mounted() {
+    window.axios.get('/api/posts')
+      .then((resp) => {
+        this.postList = resp.data;
+      })
+  }
 }
 </script>
 

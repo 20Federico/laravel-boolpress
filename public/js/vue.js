@@ -116,6 +116,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -123,7 +137,19 @@ __webpack_require__.r(__webpack_exports__);
     Navbar: _partials_Navbar_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     Footer: _partials_Footer_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
-  name: 'App'
+  name: 'App',
+  data: function data() {
+    return {
+      postList: []
+    };
+  },
+  mounted: function mounted() {
+    var _this = this;
+
+    window.axios.get('/api/posts').then(function (resp) {
+      _this.postList = resp.data;
+    });
+  }
 });
 
 /***/ }),
@@ -1368,7 +1394,37 @@ var render = function () {
       _vm._v(" "),
       _vm._m(0),
       _vm._v(" "),
-      _vm._m(1),
+      _c("main", [
+        _vm.postList.length === 0
+          ? _c("h3", { staticClass: "text-center fw-bold py-5" }, [
+              _vm._v("Ancora nessun dato disponibile..."),
+            ])
+          : _vm._e(),
+        _vm._v(" "),
+        _c("div", { staticClass: "d-flex justify-content-center py-5" }, [
+          _c(
+            "ul",
+            { staticClass: "list-group" },
+            _vm._l(_vm.postList, function (post) {
+              return _c(
+                "li",
+                { key: post.id, staticClass: "list-group-item" },
+                [
+                  _vm._v("\n          " + _vm._s(post.title) + "\n          "),
+                  _c("ul", [
+                    _c("li", [_vm._v(_vm._s(post.author))]),
+                    _vm._v(" "),
+                    _c("li", [_vm._v(_vm._s(post.description))]),
+                    _vm._v(" "),
+                    _c("li", [_vm._v(_vm._s(post.publish_date))]),
+                  ]),
+                ]
+              )
+            }),
+            0
+          ),
+        ]),
+      ]),
       _vm._v(" "),
       _c("Footer"),
     ],
@@ -1384,17 +1440,7 @@ var staticRenderFns = [
       _c("div", { staticClass: "container py-5 text-center" }, [
         _c("h1", [_vm._v("Laravel Boolpress")]),
         _vm._v(" "),
-        _c("h3", [_vm._v("Benvenuti nel blog che non contiene ancora nulla!")]),
-      ]),
-    ])
-  },
-  function () {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("main", [
-      _c("h3", { staticClass: "text-center fw-bold py-5" }, [
-        _vm._v("Ancora nessun dato disponibile..."),
+        _c("h3", [_vm._v("Benvenuti in questo strabiliante blog!")]),
       ]),
     ])
   },

@@ -1,8 +1,8 @@
 @extends('layouts.admin')
 
 @section('content')
-<div class="container">
-  {{-- <a href="{{view('admin.posts.index')}}">lista post</a> --}}
+<div class="container py-5">
+  {{-- <a href="{{route('admin.posts.index')}}">lista post</a> --}}
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">

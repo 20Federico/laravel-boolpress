@@ -22,7 +22,7 @@
 </head>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm sticky-top">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
@@ -73,8 +73,18 @@
             </div>
         </nav>
 
-        <main class="py-4">
+        
+        <main>
+          <div class="d-flex">
+            <div class="p-4 bg-primary" style="width: 20%; height:100vh">
+              <ul class="my-5 mx-3 list-unstyled">
+                <li class="py-2"><a href="{{route('admin.home')}}" class="text-white">Dashboard</a></li>
+                <li class="py-2"><a href="{{route('admin.posts.index')}}" class="text-white">Post</a></li>
+                <li class="py-2"><a href="/" class="text-white">Area pubblica</a></li>
+              </ul>
+            </div>
             @yield('content')
+          </div>
         </main>
     </div>
 </body>
