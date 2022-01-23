@@ -4,12 +4,21 @@
 <div class="container py-5">
   <div class="row justify-content-center">
 
-      <div class="col-md-8">
+      <div class="col-md-10">
         <div class="card">
           <div class="card-header">{{ __('Crea Post') }}</div>
 
             <div class="card-body">
               <div class="container py-5">
+                @if ($errors->any())
+                  <div class="alert alert-danger">
+                    <ul>
+                      @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                      @endforeach
+                    </ul>
+                  </div>
+                @endif
                 <form action="{{ route('admin.posts.store') }}" method="post">
                   @csrf
                   <div class="form-group mb-3">
