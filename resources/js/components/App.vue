@@ -13,7 +13,7 @@
       <h3 v-if="postList.length === 0" class="text-center fw-bold py-5">Ancora nessun dato disponibile...</h3>
 
       <div class="d-flex justify-content-center py-5">
-        <ul class="list-group">
+        <ul class="list-group col-8">
           <li v-for="post in postList" :key="post.id" class="list-group-item">
             {{post.title}}
             <ul>

@@ -1404,7 +1404,7 @@ var render = function () {
         _c("div", { staticClass: "d-flex justify-content-center py-5" }, [
           _c(
             "ul",
-            { staticClass: "list-group" },
+            { staticClass: "list-group col-8" },
             _vm._l(_vm.postList, function (post) {
               return _c(
                 "li",
