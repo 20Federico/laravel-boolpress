@@ -20,7 +20,11 @@
               <p>{{$post->body}}</p>
 
               <a href="{{route('admin.posts.edit', $post->id)}}" class="btn btn-success">Modifica</a>
-              {{-- <a href="{{route('admin.posts.delete', $post->id)}}" class="btn btn-date">Elimina</a> --}}
+              <form class="d-inline-block" action="{{ route('admin.posts.destroy', $post->id) }}" method="post">
+                @csrf
+                @method('DELETE')
+                <input class="btn btn-danger" type="submit" value="Cancella">
+              </form>
 
             </div>
 
