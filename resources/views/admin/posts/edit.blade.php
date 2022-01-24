@@ -28,10 +28,7 @@
                     <input class="form-control" type="text" name="title" id="title" value="{{ $post->title }}">
                   </div>
                 
-                  <div class="form-group mb-3">
-                    <label class="form-label" for="author">Autore</label>
-                    <input class="form-control" type="text" name="author" id="author" value="{{ $post->author }}">
-                  </div>
+                  <input class="form-control" type="hidden" name="user_id" id="user_id" value="{{ $user->id }}">
 
                   <div class="form-group mb-3">
                     <label class="form-label" for="description">Descrizione</label>

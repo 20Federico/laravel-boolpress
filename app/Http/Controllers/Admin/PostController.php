@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Post;
+use App\User;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -27,7 +29,9 @@ class PostController extends Controller
      */
     public function create()
     {
-      return view('admin.posts.create');
+      $user = Auth::user();
+
+      return view('admin.posts.create', compact('user'));
     }
 
     /**
@@ -40,7 +44,7 @@ class PostController extends Controller
     {
       $data = $request->validate([
         'title' => 'required | max:255', 
-        'author' => 'required | max:255', 
+        'user_id' => 'required', 
         'description' => 'required',
         'body' => 'required',
         'publish_date' => 'required', 
@@ -48,7 +52,7 @@ class PostController extends Controller
 
       $newPost = new Post;
       $newPost->title = $data['title'];
-      $newPost->author = $data['author'];
+      $newPost->user_id = $data['user_id'];
       $newPost->description = $data['description'];
       $newPost->body = $data['body'];
       $newPost->publish_date = $data['publish_date'];
@@ -63,9 +67,12 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show(Post $post, User $user)
     {
-      return view('admin.posts.show', compact('post'));
+      return view('admin.posts.show', [
+        'post' => $post,
+        'user' => $user
+      ]);
     }
 
     /**
@@ -76,7 +83,12 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-      return view('admin.posts.edit', compact('post'));
+      $user = Auth::user();
+      
+      return view('admin.posts.edit', [
+        'post' => $post,
+        'user' => $user
+      ]);
     }
 
     /**
@@ -90,7 +102,7 @@ class PostController extends Controller
     {
       $data = $request->validate([
         'title' => 'required | max:255', 
-        'author' => 'required | max:255', 
+        'user_id' => 'required', 
         'description' => 'required',
         'body' => 'required',
         'publish_date' => 'required', 

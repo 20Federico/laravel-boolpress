@@ -13,7 +13,7 @@
                 {{$post->publish_date}}
               </p>
               <h4>Autore:</h4>
-              <p>{{$post->author}}</p>
+              <p>{{$post->user->name}}</p>
               <h4>Descrizione</h4>
               <p>{{$post->description}}</p>
               <h4>Contenuto</h4>

@@ -26,11 +26,8 @@
                     <input class="form-control" type="text" name="title" id="title" value="{{ old('title') }}">
                   </div>
                 
-                  <div class="form-group mb-3">
-                    <label class="form-label" for="author">Autore</label>
-                    <input class="form-control" type="text" name="author" id="author" value="{{ old('author') }}">
-                  </div>
-
+                  <input class="form-control" type="hidden" name="user_id" id="user_id" value="{{ $user->id }}">
+                  
                   <div class="form-group mb-3">
                     <label class="form-label" for="description">Descrizione</label>
                     <textarea class="form-control" name="description" id="description" rows="2">{{old('description')}}</textarea>

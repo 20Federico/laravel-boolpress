@@ -79,6 +79,7 @@
             <div class="p-4 bg-primary" style="width: 20%; height:100vh">
               <ul class="my-5 mx-3 list-unstyled">
                 <li class="py-2"><a href="{{route('admin.home')}}" class="text-white">Dashboard</a></li>
+                <li class="py-2"><a href="{{route('admin.users.index')}}" class="text-white">Utenti</a></li>
                 <li class="py-2"><a href="{{route('admin.posts.index')}}" class="text-white">Post</a></li>
                 <li class="py-2"><a href="/" class="text-white">Area pubblica</a></li>
               </ul>
