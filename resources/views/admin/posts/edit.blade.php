@@ -41,6 +41,15 @@
                   </div>
 
                   <div class="form-group mb-3">
+                    <label class="form-label" for="category_id">Categoria</label>
+                    <select class="form-control" name="category_id" id="category_id" aria-label="Default select example">
+                      @foreach ($categories as $category)
+                      <option value="{{$category->id}}" {{$category->name == $post->category->name ? 'selected' : ''}}>{{$category->name}}</option>
+                      @endforeach
+                    </select>
+                  </div>
+
+                  <div class="form-group mb-3">
                     <label class="form-label" for="publish_date">Publish date</label>
                     <input class="form-control" type="date" name="publish_date" id="publish_date" value="{{ $post->publish_date }}">
                   </div>

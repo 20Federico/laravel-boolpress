@@ -15,11 +15,12 @@
       <div class="d-flex justify-content-center py-5">
         <ul class="list-group col-8">
           <li v-for="post in postList" :key="post.id" class="list-group-item">
-            {{post.title}}
+            <strong>{{post.title}}</strong>
             <ul>
-              <li>{{post.author}}</li>  
-              <li>{{post.description}}</li>  
-              <li>{{post.publish_date}}</li>  
+              <li>Autore: {{userList[post.user_id -1]['name']}}</li>  
+              <li>Categoria: {{categoryList[post.category_id - 1]['name']}}</li>  
+              <li>Descrizione: {{post.description}}</li>  
+              <li>Data di pubblicazione{{post.publish_date}}</li>  
             </ul>
           </li>
         </ul>
@@ -44,7 +45,8 @@ export default {
   data() {
     return {
       postList: [],
-
+      userList: [],
+      categoryList: [],
     };
   },
 
@@ -52,7 +54,18 @@ export default {
     window.axios.get('/api/posts')
       .then((resp) => {
         this.postList = resp.data;
-      })
+      });
+
+    window.axios.get('/api/users')
+      .then((resp) => {
+        this.userList = resp.data;
+      });
+    
+    window.axios.get('/api/categories')
+      .then((resp) => {
+        this.categoryList = resp.data;
+      });
+
   }
 }
 </script>

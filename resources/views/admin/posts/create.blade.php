@@ -37,6 +37,15 @@
                     <label class="form-label" for="body">Contenuto</label>
                     <textarea class="form-control" name="body" id="body" rows="5">{{old('body')}}</textarea>
                   </div>
+                  
+                  <div class="form-group mb-3">
+                    <label class="form-label" for="category_id">Categoria</label>
+                    <select class="form-control" name="category_id" id="category_id" aria-label="Default select example">
+                      @foreach ($categories as $category)
+                      <option value="{{$category->id}}" {{$category->name == 'none' ? 'selected' : ''}}>{{$category->name}}</option>
+                      @endforeach
+                    </select>
+                  </div>
 
                   <div class="form-group mb-3">
                     <label class="form-label" for="publish_date">Publish date</label>
