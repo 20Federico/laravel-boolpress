@@ -17,8 +17,8 @@
           <li v-for="post in postList" :key="post.id" class="list-group-item">
             <strong>{{post.title}}</strong>
             <ul>
-              <li>Autore: {{userList[post.user_id -1]['name']}}</li>  
-              <li>Categoria: {{categoryList[post.category_id - 1]['name']}}</li>  
+              <li>Autore: {{post.user.name}}</li>  
+              <li>Categoria: {{post.category.name}}</li>  
               <li>Descrizione: {{post.description}}</li>  
               <li>Data di pubblicazione{{post.publish_date}}</li>  
             </ul>
@@ -44,9 +44,7 @@ export default {
   name: 'App',
   data() {
     return {
-      postList: [],
-      userList: [],
-      categoryList: [],
+      postList: []
     };
   },
 
@@ -55,17 +53,6 @@ export default {
       .then((resp) => {
         this.postList = resp.data;
       });
-
-    window.axios.get('/api/users')
-      .then((resp) => {
-        this.userList = resp.data;
-      });
-    
-    window.axios.get('/api/categories')
-      .then((resp) => {
-        this.categoryList = resp.data;
-      });
-
   }
 }
 </script>

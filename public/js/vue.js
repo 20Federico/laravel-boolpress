@@ -141,9 +141,7 @@ __webpack_require__.r(__webpack_exports__);
   name: 'App',
   data: function data() {
     return {
-      postList: [],
-      userList: [],
-      categoryList: []
+      postList: []
     };
   },
   mounted: function mounted() {
@@ -151,12 +149,6 @@ __webpack_require__.r(__webpack_exports__);
 
     window.axios.get('/api/posts').then(function (resp) {
       _this.postList = resp.data;
-    });
-    window.axios.get('/api/users').then(function (resp) {
-      _this.userList = resp.data;
-    });
-    window.axios.get('/api/categories').then(function (resp) {
-      _this.categoryList = resp.data;
     });
   }
 });
@@ -1422,18 +1414,10 @@ var render = function () {
                   _c("strong", [_vm._v(_vm._s(post.title))]),
                   _vm._v(" "),
                   _c("ul", [
-                    _c("li", [
-                      _vm._v(
-                        "Autore: " +
-                          _vm._s(_vm.userList[post.user_id - 1]["name"])
-                      ),
-                    ]),
+                    _c("li", [_vm._v("Autore: " + _vm._s(post.user.name))]),
                     _vm._v(" "),
                     _c("li", [
-                      _vm._v(
-                        "Categoria: " +
-                          _vm._s(_vm.categoryList[post.category_id - 1]["name"])
-                      ),
+                      _vm._v("Categoria: " + _vm._s(post.category.name)),
                     ]),
                     _vm._v(" "),
                     _c("li", [

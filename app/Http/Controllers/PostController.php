@@ -9,7 +9,7 @@ class PostController extends Controller
 {
   public function index()
   {
-      $posts = Post::all();
+      $posts = Post::with(['category:id,name', 'user:id,name'])->get();
 
       return $posts;
   }
