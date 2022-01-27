@@ -18,7 +18,11 @@
             <strong>{{post.title}}</strong>
             <ul>
               <li>Autore: {{post.user.name}}</li>  
-              <li>Categoria: {{post.category.name}}</li>  
+              <li>Categoria: {{post.category.name}}</li> 
+              <li v-if="post.tags.length > 0">
+                Tags: 
+                <span v-for="tag in post.tags" :key="tag.id">{{tag.name}}</span>
+              </li>  
               <li>Descrizione: {{post.description}}</li>  
               <li>Data di pubblicazione{{post.publish_date}}</li>  
             </ul>

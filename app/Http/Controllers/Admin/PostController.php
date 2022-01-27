@@ -6,6 +6,7 @@ use App\Category;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Post;
+use App\Tag;
 use App\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -32,10 +33,12 @@ class PostController extends Controller
     {
       $user = Auth::user();
       $categories = Category::all();
+      $tags = Tag::all();
 
       return view('admin.posts.create', [
         'user' => $user,
-        'categories' => $categories
+        'categories' => $categories,
+        'tags' => $tags
       ]);
     }
 
@@ -53,17 +56,25 @@ class PostController extends Controller
         'description' => 'required',
         'body' => 'required',
         'publish_date' => 'required', 
-        'category_id' => 'required'
+        'category_id' => 'required',
+        'tags' => ''
       ]);
 
       $newPost = new Post;
-      $newPost->title = $data['title'];
-      $newPost->user_id = $data['user_id'];
-      $newPost->description = $data['description'];
-      $newPost->body = $data['body'];
-      $newPost->publish_date = $data['publish_date'];
-      $newPost->category_id = $data['category_id'];
+      // $newPost->title = $data['title'];
+      // $newPost->user_id = $data['user_id'];
+      // $newPost->description = $data['description'];
+      // $newPost->body = $data['body'];
+      // $newPost->publish_date = $data['publish_date'];
+      // $newPost->category_id = $data['category_id'];
+      // $newPost->save();
+      $newPost->fill($data);
       $newPost->save();
+      if (key_exists('tags', $data)) {
+        $newPost->tags()->sync($data["tags"]);
+      }
+
+
 
       return redirect()->route('admin.posts.show', $newPost->id);
     }
@@ -89,11 +100,13 @@ class PostController extends Controller
     {
       $user = Auth::user();
       $categories = Category::all();
+      $tags = Tag::all();
       
       return view('admin.posts.edit', [
         'post' => $post,
         'user' => $user,
-        'categories' => $categories
+        'categories' => $categories,
+        'tags' => $tags
       ]);
     }
 
@@ -112,10 +125,17 @@ class PostController extends Controller
         'description' => 'required',
         'body' => 'required',
         'publish_date' => 'required', 
-        'category_id' => 'required'
+        'category_id' => 'required',
+        'tags' => ''
       ]);
 
       $post->update($data);
+      
+      if (key_exists("tags", $data)) {
+        $post->tags()->sync($data["tags"]);
+      } else {
+        $post->tags()->detach();
+      }
 
       return redirect()->route('admin.posts.show', $post->id);
     }

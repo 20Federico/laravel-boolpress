@@ -19,6 +19,7 @@
                     </ul>
                   </div>
                 @endif
+
                 <form action="{{ route('admin.posts.store') }}" method="post">
                   @csrf
                   <div class="form-group mb-3">
@@ -43,6 +44,15 @@
                     <select class="form-control" name="category_id" id="category_id" aria-label="Default select example">
                       @foreach ($categories as $category)
                       <option value="{{$category->id}}" {{$category->name == 'none' ? 'selected' : ''}}>{{$category->name}}</option>
+                      @endforeach
+                    </select>
+                  </div>
+
+                  <div class="form-group mb-3">
+                    <label class="form-label" for="tags">Categoria</label>
+                    <select class="form-control" name="tags[]" id="tags" multiple>
+                      @foreach ($tags as $tag)
+                      <option value="{{$tag->id}}">{{$tag->name}}</option>
                       @endforeach
                     </select>
                   </div>

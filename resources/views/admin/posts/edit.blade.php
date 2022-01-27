@@ -50,6 +50,15 @@
                   </div>
 
                   <div class="form-group mb-3">
+                    <label class="form-label" for="tags">Categoria</label>
+                    <select class="form-control" name="tags[]" id="tags" multiple>
+                      @foreach ($tags as $tag)
+                      <option value="{{$tag->id}}" {{$post->tags->contains($tag) ? 'selected' : ''}} >{{$tag->name}}</option>
+                      @endforeach
+                    </select>
+                  </div>
+
+                  <div class="form-group mb-3">
                     <label class="form-label" for="publish_date">Publish date</label>
                     <input class="form-control" type="date" name="publish_date" id="publish_date" value="{{ $post->publish_date }}">
                   </div>

@@ -131,6 +131,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -1419,6 +1423,21 @@ var render = function () {
                     _c("li", [
                       _vm._v("Categoria: " + _vm._s(post.category.name)),
                     ]),
+                    _vm._v(" "),
+                    post.tags.length > 0
+                      ? _c(
+                          "li",
+                          [
+                            _vm._v("\n              Tags: \n              "),
+                            _vm._l(post.tags, function (tag) {
+                              return _c("span", { key: tag.id }, [
+                                _vm._v(_vm._s(tag.name)),
+                              ])
+                            }),
+                          ],
+                          2
+                        )
+                      : _vm._e(),
                     _vm._v(" "),
                     _c("li", [
                       _vm._v("Descrizione: " + _vm._s(post.description)),

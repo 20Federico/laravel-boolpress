@@ -16,6 +16,14 @@
               <p>{{$post->user->name}}</p>
               <h4>Categoria:</h4>
               <p>{{$post->category->name}}</p>
+              @if ($post->tags->count() > 0)
+              <h4>Tags:</h4>
+              @endif
+              <p>
+                @foreach ($post->tags as $tag)
+                {{$tag->name}}
+                @endforeach
+              </p>
               <h4>Descrizione</h4>
               <p>{{$post->description}}</p>
               <h4>Contenuto</h4>
