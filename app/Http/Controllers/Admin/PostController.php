@@ -61,13 +61,6 @@ class PostController extends Controller
       ]);
 
       $newPost = new Post;
-      // $newPost->title = $data['title'];
-      // $newPost->user_id = $data['user_id'];
-      // $newPost->description = $data['description'];
-      // $newPost->body = $data['body'];
-      // $newPost->publish_date = $data['publish_date'];
-      // $newPost->category_id = $data['category_id'];
-      // $newPost->save();
       $newPost->fill($data);
       $newPost->save();
       if (key_exists('tags', $data)) {
@@ -76,7 +69,7 @@ class PostController extends Controller
 
 
 
-      return redirect()->route('admin.posts.show', $newPost->id);
+      return redirect()->route('admin.posts.show', $newPost->id)->with('msg', 'Dato creato correttamente');
     }
 
     /**
@@ -137,7 +130,7 @@ class PostController extends Controller
         $post->tags()->detach();
       }
 
-      return redirect()->route('admin.posts.show', $post->id);
+      return redirect()->route('admin.posts.show', $post->id)->with('msg', 'Dato modificato correttmente');
     }
 
     /**
